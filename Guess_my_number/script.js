@@ -1,16 +1,19 @@
 let secretNumber = Math.trunc(Math.random()*20)+1
 let score = 20
 let highScore = 0
+const displayMessage=function(message){
+    document.querySelector('.message').textContent = message
 
+}
 
 document.querySelector('.check').addEventListener('click', function(){
     const guess = Number(document.querySelector('.guess').value)
    
     if (!guess){
-        document.querySelector('.message').textContent = "No Number 🚩"
+        displayMessage("No Number 🚩")
     }
     else if(guess===secretNumber){
-        document.querySelector('.message').textContent = "You got it🥇"
+        displayMessage("You got it🥇")
         document.querySelector('.number').textContent = secretNumber
         document.querySelector('body').style.backgroundColor='#60b347'
         if (score>highScore){
@@ -20,7 +23,7 @@ document.querySelector('.check').addEventListener('click', function(){
         
     }
     else if(guess!==secretNumber){
-        document.querySelector('.message').textContent = guess>secretNumber?"You're guess is too high ⬇":"You're guess is too low ⬆";
+        displayMessage(guess>secretNumber?"You're guess is too high ⬇":"You're guess is too low ⬆")
         document.querySelector('.guess').value=''
         score--;
         document.querySelector('.score').textContent = score

@@ -19,14 +19,8 @@ document.querySelector('.check').addEventListener('click', function(){
         }
         
     }
-    else if (guess>secretNumber){
-        document.querySelector('.message').textContent = "You're guess is too high ⬇"
-        document.querySelector('.guess').value=''
-        score--;
-        document.querySelector('.score').textContent = score   
-    }
-    else if (guess<secretNumber){
-        document.querySelector('.message').textContent = "You're guess is too low ⬆"
+    else if(guess!==secretNumber){
+        document.querySelector('.message').textContent = guess>secretNumber?"You're guess is too high ⬇":"You're guess is too low ⬆";
         document.querySelector('.guess').value=''
         score--;
         document.querySelector('.score').textContent = score

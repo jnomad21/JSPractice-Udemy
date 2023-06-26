@@ -49,14 +49,14 @@ btnHold.addEventListener('click', function(){
     if (playing){
     scores[activePlayer] += currentScore;
     document.getElementById(`score--${activePlayer}`).textContent = scores[activePlayer];
-    
-    if (scores[activePlayer]>=10){
-        playing = false
-        document.querySelector(`.player--${activePlayer}`).classList.add('player--winner');
-        document.querySelector(`.player--${activePlayer}`).classList.remove('player--active');
-
-    }else{
-        switchPlayer
+        if (scores[activePlayer]>=10){
+            playing = false
+            diceEl.classList.add('hidden');
+            document.querySelector(`.player--${activePlayer}`).classList.add('player--winner');
+            document.querySelector(`.player--${activePlayer}`).classList.remove('player--active');
+        
+    } else {
+        switchPlayer();
     }
-} 
+}
 })

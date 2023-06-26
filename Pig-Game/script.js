@@ -18,6 +18,8 @@ const scores = [0,0]
 let currentScore = 0
 let activePlayer = 0;
 
+let playing = true;
+
 const switchPlayer = function () {
     document.getElementById(`current--${activePlayer}`).textContent = 0
     currentScore = 0
@@ -27,6 +29,7 @@ const switchPlayer = function () {
 };
 
 btnRoll.addEventListener('click', function(){
+    if (playing){
     const dice = Math.trunc(Math.random()*6) + 1
     diceEl.classList.remove('hidden')
     diceEl.src =`dice-${dice}.png`
@@ -39,19 +42,21 @@ btnRoll.addEventListener('click', function(){
         switchPlayer()
         
     }
-
+    }
 });
 
 btnHold.addEventListener('click', function(){
+    if (playing){
     scores[activePlayer] += currentScore;
     document.getElementById(`score--${activePlayer}`).textContent = scores[activePlayer];
     
     if (scores[activePlayer]>=10){
+        playing = false
         document.querySelector(`.player--${activePlayer}`).classList.add('player--winner');
         document.querySelector(`.player--${activePlayer}`).classList.remove('player--active');
 
     }else{
         switchPlayer
     }
-    
+} 
 })
